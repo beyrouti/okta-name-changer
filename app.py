@@ -16,9 +16,9 @@ class HelloWorld(Resource):
         return {"data": "Posted"}
 
 class UserNameChange(Resource):
-    def post(self,uEmail):
+    def post(self,uEmail,okta_api_token):
         userID = ""
-        okta_api_token = '00-v0UJDvXB5doHL8T4nu6G-QsngRiBIDQIhQoa_aF'
+        # okta_api_token = ''
         site_url = 'https://afh.okta.com'
         get_user_url = ""
         user_response = ""
@@ -60,12 +60,8 @@ class UserNameChange(Resource):
                         print("failed")
         return {"data": userID}
 
-
-
-
-
 api.add_resource(HelloWorld, "/helloworld")
-api.add_resource(UserNameChange, "/namechange/<string:uEmail>")
+api.add_resource(UserNameChange, "/namechange/<string:uEmail>/<string:okta_api_token>")
 
 if __name__ == "__main__":
     app.run(debug=True)
