@@ -12,7 +12,12 @@ class HelloWorld(Resource):
     def post(self):
         return {"data": "Posted"}
 
+class UserNameChange(Resource):
+    def post(self,uEmail):
+        return {"data": uEmail}
+
 api.add_resource(HelloWorld, "/helloworld")
+api.add_resource(UserNameChange, "/namechange/<string:uEmail>")
 
 if __name__ == "__main__":
     app.run(debug=True)
